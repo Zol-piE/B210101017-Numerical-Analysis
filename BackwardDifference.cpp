@@ -23,30 +23,6 @@ void print(vector<vector<float>> &arr,int n)
         cout<<endl;
     }
 }
-unsigned int factorial(unsigned int n)
-{
-    if (n == 0)
-        return 1;
-    return n * factorial(n - 1);
-}
-float solve(vector<vector<float>> &y,vector<float> &x,int n,int h,int value)
-{
-    float  p = (value - x[n-1]) / h;
-    float res = 0;
-    res +=y[n-1][0];
-//    cout<<res<<endl;
-    for(int i =1;i<n;i++)
-    {
-        float z = 1;
-        for(int j =0;j<i;j++)
-        {
-            z *=(p+j);
-        }
-        res += (z * y[n-1][i]) / (float)factorial(i);
-//    cout<<res<<endl;
-    }
-    return res;
-}
 int main()
 {
     fast
@@ -56,17 +32,14 @@ int main()
     cout<<"Enter X variable "<<endl;
     for(int i =0;i<n;i++) cin>>x[i];
 
-    vector<vector<float>> y(n,vector<float>(n,-1));
+    vector<vector<float>> y(n,vector<float>(n,0));
 
     cout<<"Enter Y Variable "<<endl;
     for(int i =0;i<n;i++) cin>>y[i][0];
 
     cout<<"Print Table "<<endl;
-    print(y,n);
-    cout<<"Print Backward Table "<<endl;
     Backward(y,n);
     print(y,n);
-    cout<<solve(y,x,n,x[1]-x[0],1925);
     return 0;
 }
 
