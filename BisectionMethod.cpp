@@ -4,9 +4,8 @@ using namespace std;
 #define test int t; cin>>t;
 double fun(double x)
 {
-    return ((x*x*x) -2*x-5);
+    return ((x*x*x) +(x*x)+x+7);
 }
-
 void bisection(double a,double b,double tol)
 {
     double mid = b;
@@ -14,8 +13,10 @@ void bisection(double a,double b,double tol)
     {
         mid = (a+b)/2;
         double res = fun(mid);
-        if(mid==0) break;
-
+        if(fun(mid)==0) break;
+        if (abs(res) < tol) { // Check if mid is close enough to the root
+            break;
+        }
         if(fun(a)*res<0)
         {
             b = mid; // root lies between a and mid
